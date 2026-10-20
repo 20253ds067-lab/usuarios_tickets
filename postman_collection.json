@@ -1,0 +1,176 @@
+{
+  "info": {
+    "name": "Tickets Spring Boot API",
+    "description": "Colección completa para probar los servicios y validaciones del proyecto de Tickets",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "0. Crear Usuario (Preparación)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Juan Perez\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/usuario",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["usuario"]
+        }
+      }
+    },
+    {
+      "name": "1. Crear Ticket (25 pts)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"descripcion\": \"Fallo con la conexion a internet\",\n  \"prioridad\": \"ALTA\",\n  \"usuarioId\": 1\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/ticket",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["ticket"]
+        }
+      }
+    },
+    {
+      "name": "2. Actualizar Estado Ticket - Paso 1: ABIERTO a EN_PROCESO (25 pts)",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/ticket/1/estado",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["ticket", "1", "estado"]
+        }
+      }
+    },
+    {
+      "name": "2. Actualizar Estado Ticket - Paso 2: EN_PROCESO a CERRADO (25 pts)",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/ticket/1/estado",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["ticket", "1", "estado"]
+        }
+      }
+    },
+    {
+      "name": "2. Actualizar Estado Ticket - Paso 3: Error si ya está CERRADO",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/ticket/1/estado",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["ticket", "1", "estado"]
+        }
+      }
+    },
+    {
+      "name": "3. Reasignar Prioridad (20 pts)",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"prioridad\": \"MEDIA\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/ticket/1/prioridad",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["ticket", "1", "prioridad"]
+        }
+      }
+    },
+    {
+      "name": "4. Desactivar Usuario (10 pts)",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/usuario/1/desactivar",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["usuario", "1", "desactivar"]
+        }
+      }
+    },
+    {
+      "name": "5. Obtener Tickets de Usuario (5 pts)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/ticket/usuario/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["ticket", "usuario", "1"]
+        }
+      }
+    },
+    {
+      "name": "Consultar Todos los Usuarios",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/usuario",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["usuario"]
+        }
+      }
+    },
+    {
+      "name": "Consultar Todos los Tickets",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/ticket",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["ticket"]
+        }
+      }
+    }
+  ]
+}
